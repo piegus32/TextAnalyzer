@@ -10,6 +10,8 @@ namespace TextAnalyzer
     {
         static void Main(string[] args)
         {
+            Main starProgram = new Main();
+            starProgram.StartMenu();
         }
     }
 }
