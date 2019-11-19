@@ -9,52 +9,39 @@ namespace TextAnalyzer
 {
     class Main
     {
-        int getResponse;
-
         //Delegate WriteMessege.
         Action<string> writeMessege = Writer.WriteMessege;
+        List<ICommand> optionsList = new List<ICommand>();
+
+        public Main()
+        {
+            optionsList.Add(new TemplateCommandOption());
+            optionsList.Add(new ExitCommand());
+
+            StartMenu();
+        }
 
         public void StartMenu()
         {
-            writeMessege("1.Type 1");
-            writeMessege("2.Type 2");
-            writeMessege("3.Type 3");
-            writeMessege("4.Type 4");
+            int i = 1;
+            foreach (var command in optionsList)
+            {
+                writeMessege($"{i++}. {command.Description}");
+            }
             writeMessege("Took: ");
 
-            //Try-catch exception before switching option.
-            //If getRespone different than int32 , return to method.
+            //Try-catch exception before choosing option.
+            //If the read int is not a valid index in options list, retry
             try
             {
-                getResponse = Convert.ToInt32(Console.ReadLine());
+                int getRespone = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                optionsList[getRespone- 1].Activate();
+                StartMenu();
             }
             catch (Exception)
             {
                 StartMenu();
-            }
-            
-
-            switch (getResponse)
-            {
-                case 1:
-                    writeMessege("First Option");
-                    StartMenu();
-                    break;
-                case 2:
-                    writeMessege("Second Option");
-                    StartMenu();
-                    break;
-                case 3:
-                    writeMessege("Third Option");
-                    StartMenu();
-                    break;
-                case 4:
-                    writeMessege("Exiting Program...");
-                    Thread.Sleep(2000);
-                    return;
-                default:
-                    StartMenu();
-                    break;
             }
         }
     }

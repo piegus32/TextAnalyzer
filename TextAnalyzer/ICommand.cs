@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace TextAnalyzer
 {
-    class Program
+    interface ICommand
     {
-        static void Main(string[] args)
-        {
-            Main starProgram = new Main();
-        }
+        string Description { get; }
+        void Activate();
     }
 }
