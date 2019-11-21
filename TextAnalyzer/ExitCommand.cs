@@ -6,13 +6,7 @@ namespace TextAnalyzer
 {
     class ExitCommand : ICommand
     {
-        public string Description
-        {
-            get
-            {
-                return "Exit Program.";
-            }
-        }
+        public string Description => "Exit Program";
 
         public void Activate()
         {

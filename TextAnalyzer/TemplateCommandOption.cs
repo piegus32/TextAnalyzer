@@ -8,13 +8,7 @@ namespace TextAnalyzer
 {
     class TemplateCommandOption : ICommand
     {
-        public string Description
-        {
-            get
-            {
-                return "Template option, writes the text file in the console";
-            }
-        }
+        public string Description => "Template option, writes the text file in the console";
 
         public void Activate()
         {

@@ -9,9 +9,8 @@ namespace TextAnalyzer
 {
     class Main
     {
-        //Delegate WriteMessege.
-        Action<string> writeMessege = Writer.WriteMessege;
-        List<ICommand> optionsList = new List<ICommand>();
+        protected readonly Action<string> writeMessege = Writer.WriteMessege;
+        protected readonly List<ICommand> optionsList = new List<ICommand>();
 
         public Main()
         {
@@ -24,19 +23,16 @@ namespace TextAnalyzer
         public void StartMenu()
         {
             int i = 1;
-            foreach (var command in optionsList)
-            {
-                writeMessege($"{i++}. {command.Description}");
-            }
+            foreach (var command in optionsList) writeMessege($"{i++}. {command.Description}");
             writeMessege("Took: ");
 
             //Try-catch exception before choosing option.
             //If the read int is not a valid index in options list, retry
             try
             {
-                int getRespone = Convert.ToInt32(Console.ReadLine());
+                int response = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-                optionsList[getRespone- 1].Activate();
+                optionsList[response- 1].Activate();
                 StartMenu();
             }
             catch (Exception)

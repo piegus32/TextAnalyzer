@@ -9,7 +9,10 @@ namespace TextAnalyzer
         private const string FILE_NAME = "text.txt";
         private const string LINK = "https://s3.zylowski.net/public/input/3.txt";
 
-        // Fetch the text, download if needed
+        /// <summary>
+        /// Get Text File from web client.
+        /// </summary>
+        /// <returns>Returns the string with entire text.</returns>
         public static string GetTextFileString()
         {
             if (File.Exists(FILE_NAME))
@@ -30,7 +33,7 @@ namespace TextAnalyzer
                 }
             }
 
-            if (File.Exists(FILE_NAME)) // Failsafe condition
+            if (File.Exists(FILE_NAME))
             {
                 return File.ReadAllText(FILE_NAME);
             }
