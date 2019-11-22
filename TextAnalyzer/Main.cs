@@ -15,6 +15,7 @@ namespace TextAnalyzer
         public Main()
         {
             optionsList.Add(new TemplateCommandOption());
+            optionsList.Add(new LettersCountReportCommand());
             optionsList.Add(new ExitCommand());
 
             StartMenu();
