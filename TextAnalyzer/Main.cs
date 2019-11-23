@@ -12,21 +12,20 @@ namespace TextAnalyzer
     {
         protected readonly Action<string> writeMessege = Writer.WriteMessege;
         protected static readonly List<ICommand> optionsList = new List<ICommand>();
-		public static List<ICommand> Commands => optionsList;
+	public static List<ICommand> Commands => optionsList;
 
         public Main()
-        {
-            optionsList.Add(new TemplateCommandOption());
-            optionsList.Add(new CountWordsCommand());
-			      optionsList.Add(new CountPunctuationMarksCommand());
-            optionsList.Add(new LettersCountReportCommand());
-            optionsList.Add(new CountWordsCommand());
-            optionsList.Add(new CountEveryLetterReportCommand());
-            optionsList.Add(new CountSentencesInFileCommand());
-		      	optionsList.Add(new CreateReportCommand());
-            optionsList.Add(new ExitCommand());
+	{
+		optionsList.Add(new TemplateCommandOption());
+		optionsList.Add(new CountWordsCommand());
+		optionsList.Add(new CountPunctuationMarksCommand());
+		optionsList.Add(new LettersCountReportCommand());
+		optionsList.Add(new CountEveryLetterReportCommand());
+		optionsList.Add(new CountSentencesInFileCommand());
+		optionsList.Add(new CreateReportCommand());
+		optionsList.Add(new ExitCommand());
 
-            StartMenu();
+		StartMenu();
         }
 
         public void StartMenu()
