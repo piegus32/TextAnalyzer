@@ -18,6 +18,7 @@ namespace TextAnalyzer
              * Sign Count
              * Writer.WriteMessege("Text sign count: {0}", text.Length.ToString());
              */
+            Writer.WriteMessege(Regex.Matches(text, @"[a-zA-Z]").Count.ToString());
             Writer.WriteMessege("Text letter count [a-Z]: {0}\n", Regex.Replace(text, @"(\W|\d|_)+", "").Length.ToString());
         }
     }
