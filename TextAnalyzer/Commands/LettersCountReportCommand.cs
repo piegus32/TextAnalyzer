@@ -9,7 +9,9 @@ namespace TextAnalyzer
 {
     class LettersCountReportCommand : ICommand
     {
-        public string Description => "Count letters from file";
+		public bool Reportable => true;
+
+		public string Description => "Count letters from file";
 
         public void Activate()
         {
