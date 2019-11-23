@@ -8,7 +8,10 @@ namespace TextAnalyzer.Commands
     public class CountWordsCommand : ICommand
     {
         public string Description => "Count Words";
-        public void Activate()
+
+		public bool Reportable => true;
+
+		public void Activate()
         {
             String text = Regex.Replace(TextFileFetcher.GetTextFileString(), @"(\d|_)+", "");
             List<String> wordsList = Regex.Split(text, @"(\ )",
