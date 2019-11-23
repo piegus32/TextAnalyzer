@@ -17,8 +17,8 @@ namespace TextAnalyzer
         public Main()
         {
             optionsList.Add(new TemplateCommandOption());
-            optionsList.Add(new CountWordsCommand());
             optionsList.Add(new LettersCountReportCommand());
+            optionsList.Add(new CountWordsCommand());
             optionsList.Add(new CountEveryLetterReportCommand());
             optionsList.Add(new CountSentencesInFileCommand());
 			optionsList.Add(new CreateReportCommand());
