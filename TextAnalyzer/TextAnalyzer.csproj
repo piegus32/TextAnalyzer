@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CountPunctuationMarksCommand.cs" />
     <Compile Include="Commands\CountSentencesInFileCommand.cs" />
     <Compile Include="Commands\CountWordsCommand.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
