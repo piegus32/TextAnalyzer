@@ -12,7 +12,7 @@ namespace TextAnalyzer.Commands
 
 		public bool Reportable => true;
 
-		List<char> punctuationMarksList = new List<char>() { '.', ',', '?', '!', ';' };
+		List<char> punctuationMarksList = new List<char>() { '.', '?' };
 
 		public void Activate()
 		{
