@@ -8,8 +8,9 @@ namespace TextAnalyzer.Commands
 {
     class CountSentencesInFileCommand : ICommand
     {
+		public bool Reportable => true;
 
-        List<char> endCharacters = new List<char>(){'?','!','.'};
+		List<char> endCharacters = new List<char>(){'?','!','.'};
 
         public string Description => "Count all sentences in file.";
 
@@ -18,7 +19,6 @@ namespace TextAnalyzer.Commands
         public void Activate()
         {
             CountSentences();
-            throw new NotImplementedException();
         }
 
         protected void CountSentences()

@@ -11,7 +11,9 @@ namespace TextAnalyzer
     {
         public string Description => "Generate report for each letter from file";
 
-        public void Activate()
+		public bool Reportable => true;
+
+		public void Activate()
         {
             List<LetterOccurrenceModel> letterOccurrenceList = new List<LetterOccurrenceModel>();
 
@@ -29,11 +31,11 @@ namespace TextAnalyzer
                     letterOccurrenceModel.Increase();
                 }
             }
-            Writer.WriteMessege("Report of letter occurrence in text");
+            Writer.WriteMessege("Report of letter occurrence in text:\n");
 
             foreach (LetterOccurrenceModel letterOccurrenceModel in letterOccurrenceList.OrderBy(o => o.letter).ToList())
             {
-                Writer.WriteMessege("Letter {0} : occurs {1} time(s)", letterOccurrenceModel.letter, letterOccurrenceModel.count);
+                Writer.WriteMessege("Letter {0} : occurs {1} time(s)\n", letterOccurrenceModel.letter, letterOccurrenceModel.count);
             }
 
             Writer.WriteMessege("");

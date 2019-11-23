@@ -10,5 +10,7 @@ namespace TextAnalyzer
     {
         string Description { get; }
         void Activate();
+
+		bool Reportable { get; }
     }
 }
