@@ -18,7 +18,7 @@ namespace TextAnalyzer.Commands
                 RegexOptions.IgnoreCase,
                 TimeSpan.FromMilliseconds(500)).ToList();
             Regex rgx = new Regex(@"^(\ |:)$");
-            List<String> wordsOnlyList = wordsList.FindAll(x => !rgx.IsMatch(x) && x != "");
+            List<String> wordsOnlyList = wordsList.FindAll(word => !rgx.IsMatch(word) && word != "").Where(word => word.Length > 1).ToList();
 
             Writer.WriteMessege("Text words count: {0}\n", wordsOnlyList.Count);
             
