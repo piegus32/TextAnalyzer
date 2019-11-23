@@ -10,7 +10,7 @@ namespace TextAnalyzer
     {
 		public bool Reportable => false;
 
-		public string Description => "Template option, writes the text file in the console";
+		public string Description => "Download file from internet";
 
         public void Activate()
         {
