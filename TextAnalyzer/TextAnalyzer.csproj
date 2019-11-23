@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExitCommand.cs" />
+    <Compile Include="Commands\CountSentencesInFileCommand.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="CountEveryLetterReportCommand.cs" />
-    <Compile Include="LetterOccurrenceModel.cs" />
-    <Compile Include="LettersCountReportCommand.cs" />
+    <Compile Include="Commands\CountEveryLetterReportCommand.cs" />
+    <Compile Include="Model\LetterOccurrenceModel.cs" />
+    <Compile Include="Commands\LettersCountReportCommand.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,5 +59,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

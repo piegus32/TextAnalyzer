@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TextAnalyzer.Commands;
 
 namespace TextAnalyzer
 {
@@ -17,6 +18,7 @@ namespace TextAnalyzer
             optionsList.Add(new TemplateCommandOption());
             optionsList.Add(new LettersCountReportCommand());
             optionsList.Add(new CountEveryLetterReportCommand());
+            optionsList.Add(new CountSentencesInFileCommand());
             optionsList.Add(new ExitCommand());
 
             StartMenu();
