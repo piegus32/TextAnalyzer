@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CountSentencesInFileCommand.cs" />
+    <Compile Include="Commands\CountWordsCommand.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
