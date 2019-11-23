@@ -11,7 +11,8 @@ namespace TextAnalyzer
     class Main
     {
         protected readonly Action<string> writeMessege = Writer.WriteMessege;
-        protected readonly List<ICommand> optionsList = new List<ICommand>();
+        protected static readonly List<ICommand> optionsList = new List<ICommand>();
+		public static List<ICommand> Commands => optionsList;
 
         public Main()
         {
@@ -20,6 +21,7 @@ namespace TextAnalyzer
             optionsList.Add(new LettersCountReportCommand());
             optionsList.Add(new CountEveryLetterReportCommand());
             optionsList.Add(new CountSentencesInFileCommand());
+			optionsList.Add(new CreateReportCommand());
             optionsList.Add(new ExitCommand());
 
             StartMenu();
@@ -36,11 +38,11 @@ namespace TextAnalyzer
             try
             {
                 int response = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
-                optionsList[response- 1].Activate();
-                StartMenu();
-            }
-            catch (Exception)
+				Console.Clear();
+				optionsList[response - 1].Activate();
+				StartMenu();
+			}
+			catch (Exception)
             {
                 StartMenu();
             }

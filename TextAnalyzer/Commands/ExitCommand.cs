@@ -6,7 +6,9 @@ namespace TextAnalyzer
 {
     class ExitCommand : ICommand
     {
-        public string Description => "Exit Program";
+		public bool Reportable => false;
+
+		public string Description => "Exit Program";
      
         /// <summary>
         /// Cleanup the code and exit the program.
