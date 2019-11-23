@@ -16,7 +16,8 @@ namespace TextAnalyzer
 
         public Main()
         {
-            optionsList.Add(new TemplateCommandOption());
+
+            optionsList.Add(new DownloadFileCommand());
             optionsList.Add(new LettersCountReportCommand());
             optionsList.Add(new CountWordsCommand());
             optionsList.Add(new CountEveryLetterReportCommand());
@@ -29,9 +30,20 @@ namespace TextAnalyzer
 
         public void StartMenu()
         {
+            if (TextFileFetcher.FILE_NAME == null)
+            {
+                writeMessege("No File Loaded");
+            }
+            else
+            {
+                writeMessege("Opened File:" + TextFileFetcher.FILE_NAME);
+            }
             int i = 1;
             foreach (var command in optionsList) writeMessege($"{i++}. {command.Description}");
             writeMessege("Took: ");
+
+            
+
 
             //Try-catch exception before choosing option.
             //If the read int is not a valid index in options list, retry

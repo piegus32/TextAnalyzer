@@ -6,31 +6,39 @@ namespace TextAnalyzer
 {
     static class TextFileFetcher
     {
-        private const string FILE_NAME = "text.txt";
+        public static string FILE_NAME = "text.txt";
+        private const string REPORT_FILE = "report.txt";
         private const string LINK = "https://s3.zylowski.net/public/input/3.txt";
+
+        public static bool DownloadFileFromURL(string URL, string fileName = null)
+        {
+            using (var client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile(URL, fileName != null ? fileName: Path.GetFileName(URL) );
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
 
         /// <summary>
         /// Get Text File from web client.
         /// </summary>
         /// <returns>Returns the string with entire text.</returns>
-        public static string GetTextFileString()
+        public static string GetTextFileString(string link = LINK, string filename = null)
         {
             if (File.Exists(FILE_NAME))
             {
                 return File.ReadAllText(FILE_NAME);
             }
 
-            using (var client = new WebClient())
-            {
-                try
-                {
-                    client.DownloadFile(LINK, FILE_NAME);
-                }
-                catch(Exception)
-                {
-                    Console.Write("Could not fetch the file, try again.");
-                    return null;
-                }
+            if (!DownloadFileFromURL(link)) { 
+                Console.Write("ERROR: Could not fetch the file.");
             }
 
             if (File.Exists(FILE_NAME))
@@ -45,6 +53,11 @@ namespace TextAnalyzer
             if (File.Exists(FILE_NAME))
             {
                 File.Delete(FILE_NAME);
+            }
+
+            if (File.Exists(REPORT_FILE))
+            {
+                File.Delete(REPORT_FILE);
             }
         }
     }
