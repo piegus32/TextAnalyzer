@@ -38,12 +38,10 @@ namespace TextAnalyzer
             {
                 writeMessege("Opened File:" + TextFileFetcher.FILE_NAME);
             }
+
             int i = 1;
             foreach (var command in optionsList) writeMessege($"{i++}. {command.Description}");
             writeMessege("Took: ");
-
-            
-
 
             //Try-catch exception before choosing option.
             //If the read int is not a valid index in options list, retry
