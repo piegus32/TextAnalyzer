@@ -15,12 +15,13 @@ namespace TextAnalyzer
 
         public void Activate()
         {
-            String text = TextFileFetcher.GetTextFileString();
-            /**
-             * Sign Count
-             * Writer.WriteMessege("Text sign count: {0}", text.Length.ToString());
-             */
-            Writer.WriteMessege("Text letter count [a-Z]: {0}\n", Regex.Matches(text, @"[a-zA-Z]").Count.ToString());
+            var text = TextFileFetcher.GetTextFileString();
+
+            var total = Regex.Matches(text, @"[a-zA-Z]").Count;
+
+            var vowels = Regex.Matches(text, @"[AEIOUaeiou]").Count;
+
+            Writer.WriteMessege($"Text vowels count : {vowels} \nText consonants count: {total - vowels}");
         }
     }
 }
