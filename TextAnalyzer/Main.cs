@@ -12,7 +12,7 @@ namespace TextAnalyzer
     {
         protected readonly Action<string> writeMessege = Writer.WriteMessege;
         protected static readonly List<ICommand> optionsList = new List<ICommand>();
-	public static List<ICommand> Commands => optionsList;
+	    public static List<ICommand> Commands => optionsList;
 
         public Main()
         {
@@ -22,10 +22,10 @@ namespace TextAnalyzer
             optionsList.Add(new CountPunctuationMarksCommand());
             optionsList.Add(new CountEveryLetterReportCommand());
             optionsList.Add(new CountSentencesInFileCommand());
-			      optionsList.Add(new CreateReportCommand());
+            optionsList.Add(new CreateReportCommand());
             optionsList.Add(new ExitCommand());
           
-		        StartMenu();
+		    StartMenu();
         }
 
         public void StartMenu()
@@ -33,14 +33,29 @@ namespace TextAnalyzer
             if (TextFileFetcher.FILE_NAME == null)
             {
                 writeMessege("No File Loaded");
+                WriteOptionsAndTakeChoice(GetOnFileNotDownloadedOptions());
             }
             else
             {
                 writeMessege("Opened File:" + TextFileFetcher.FILE_NAME);
+                WriteOptionsAndTakeChoice(optionsList);
             }
 
+        }
+
+        private List<ICommand> GetOnFileNotDownloadedOptions()
+        {
+            var downloadIndex = optionsList.FindIndex((e) => e.GetType() == typeof(DownloadFileCommand));
+            var exitIndex = optionsList.FindIndex((e) => e.GetType() == typeof(ExitCommand));
+
+            List<ICommand> options = new List<ICommand>{ optionsList[downloadIndex], optionsList[exitIndex] };
+            return options;
+        }
+
+        private void WriteOptionsAndTakeChoice(List<ICommand> viableOptions)
+        {
             int i = 1;
-            foreach (var command in optionsList) writeMessege($"{i++}. {command.Description}");
+            foreach (var command in viableOptions) writeMessege($"{i++}. {command.Description}");
             writeMessege("Took: ");
 
             //Try-catch exception before choosing option.
@@ -48,11 +63,11 @@ namespace TextAnalyzer
             try
             {
                 int response = Convert.ToInt32(Console.ReadLine());
-				Console.Clear();
-				optionsList[response - 1].Activate();
-				StartMenu();
-			}
-			catch (Exception)
+                Console.Clear();
+                viableOptions[response - 1].Activate();
+                StartMenu();
+            }
+            catch (Exception)
             {
                 StartMenu();
             }
