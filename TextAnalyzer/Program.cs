@@ -10,6 +10,7 @@ namespace TextAnalyzer
     {
         static void Main(string[] args)
         {
+            TextFileFetcher.FILE_NAME = null;
             Main starProgram = new Main();
         }
     }

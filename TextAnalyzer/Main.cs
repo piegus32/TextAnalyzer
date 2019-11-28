@@ -16,20 +16,29 @@ namespace TextAnalyzer
 
         public Main()
         {
-		    optionsList.Add(new TemplateCommandOption());
-		    optionsList.Add(new CountWordsCommand());
-		    optionsList.Add(new CountPunctuationMarksCommand());
-		    optionsList.Add(new LettersCountReportCommand());
-		    optionsList.Add(new CountEveryLetterReportCommand());
-		    optionsList.Add(new CountSentencesInFileCommand());
-		    optionsList.Add(new CreateReportCommand());
-		    optionsList.Add(new ExitCommand());
-
-		    StartMenu();
+            optionsList.Add(new DownloadFileCommand());
+            optionsList.Add(new LettersCountReportCommand());
+            optionsList.Add(new CountWordsCommand());
+            optionsList.Add(new CountPunctuationMarksCommand());
+            optionsList.Add(new CountEveryLetterReportCommand());
+            optionsList.Add(new CountSentencesInFileCommand());
+			      optionsList.Add(new CreateReportCommand());
+            optionsList.Add(new ExitCommand());
+          
+		        StartMenu();
         }
 
         public void StartMenu()
         {
+            if (TextFileFetcher.FILE_NAME == null)
+            {
+                writeMessege("No File Loaded");
+            }
+            else
+            {
+                writeMessege("Opened File:" + TextFileFetcher.FILE_NAME);
+            }
+
             int i = 1;
             foreach (var command in optionsList) writeMessege($"{i++}. {command.Description}");
             writeMessege("Took: ");
