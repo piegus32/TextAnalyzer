@@ -6,9 +6,16 @@ namespace TextAnalyzer
 {
     static class TextFileFetcher
     {
-        public static string FILE_NAME = "text.txt";
         private const string REPORT_FILE = "report.txt";
         private const string LINK = "https://s3.zylowski.net/public/input/3.txt";
+        private static string FILE_NAME;
+        public static string Link => LINK;
+        public static string FileName
+        {
+            get => FILE_NAME;
+            set => FILE_NAME = value;
+        }
+
 
         public static bool DownloadFileFromURL(string URL, string fileName = null)
         {
@@ -17,6 +24,7 @@ namespace TextAnalyzer
                 try
                 {
                     client.DownloadFile(URL, fileName != null ? fileName: Path.GetFileName(URL) );
+                    FILE_NAME = fileName;
                     return true;
                 }
                 catch (Exception)
@@ -30,14 +38,14 @@ namespace TextAnalyzer
         /// Get Text File from web client.
         /// </summary>
         /// <returns>Returns the string with entire text.</returns>
-        public static string GetTextFileString(string link = LINK, string filename = null)
+        public static string GetTextFileString(string filename = null)
         {
             if (File.Exists(FILE_NAME))
             {
                 return File.ReadAllText(FILE_NAME);
             }
 
-            if (!DownloadFileFromURL(link)) { 
+            if (!DownloadFileFromURL(LINK)) { 
                 Console.Write("ERROR: Could not fetch the file.");
             }
 
@@ -59,6 +67,11 @@ namespace TextAnalyzer
             {
                 File.Delete(REPORT_FILE);
             }
+        }
+
+        public static bool CheckIfFileExists()
+        {
+            return File.Exists(FILE_NAME);
         }
     }
 }

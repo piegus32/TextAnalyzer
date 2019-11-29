@@ -20,7 +20,7 @@ namespace TextAnalyzer.Commands
             Regex rgx = new Regex(@"^(\ |:)$");
             List<String> wordsOnlyList = wordsList.FindAll(word => !rgx.IsMatch(word) && word != "").Where(word => word.Length > 1).ToList();
 
-            Writer.WriteMessege("Text words count: {0}\n", wordsOnlyList.Count);
+            Writer.WriteMessege("Text words count: {0}", wordsOnlyList.Count);
             
         }
     }

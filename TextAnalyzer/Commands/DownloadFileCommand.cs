@@ -9,9 +9,9 @@ namespace TextAnalyzer
 {
     class DownloadFileCommand : ICommand
     {
-		public bool Reportable => false;
+        public bool Reportable => false;
 
-		public string Description => "Download file from internet";
+        public string Description => "Download file from internet/Load from disc.";
 
         public void Activate()
         {
@@ -19,13 +19,23 @@ namespace TextAnalyzer
             string option = Console.ReadLine();
             if (option.ToString().ToLower() == "y")
             {
-                Writer.WriteMessege("Type URL of text file:");
+                Writer.WriteMessege("Type URL of text file (type 'default' for default file):");
                 string url = Console.ReadLine();
 
-                Writer.WriteMessege("Downloading file...");
-                if (TextFileFetcher.DownloadFileFromURL(url))
+                if (url.ToLower() == "default")
                 {
-                    Writer.WriteMessege($"File {TextFileFetcher.FILE_NAME} downloaded correctly");
+                    url = TextFileFetcher.Link;
+                }
+
+                Console.Clear();
+
+                Writer.WriteMessege("Choose file name:");
+                string name = Console.ReadLine();
+
+                Writer.WriteMessege("Downloading file...");
+                if (TextFileFetcher.DownloadFileFromURL(url, name))
+                {
+                    Writer.WriteMessege($"File {TextFileFetcher.FileName} downloaded correctly");
                 }
                 else
                 {
@@ -34,13 +44,20 @@ namespace TextAnalyzer
             }
             else
             {
+                Console.Clear();
+
                 Writer.WriteMessege("Getting file from local disk");
                 Writer.WriteMessege("Type text file name:");
                 string url = Console.ReadLine();
                 Writer.WriteMessege("You typed: " + url);
 
-                TextFileFetcher.FILE_NAME = url;
+                TextFileFetcher.FileName = url;
+                if (!TextFileFetcher.CheckIfFileExists())
+                {
+                    Writer.WriteMessege("\nThe file does not exist!");
+                }
             }
+
             Writer.WriteMessege(TextFileFetcher.GetTextFileString());
         }
     }

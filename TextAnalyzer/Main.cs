@@ -30,16 +30,17 @@ namespace TextAnalyzer
 
         public void StartMenu()
         {
-            if (TextFileFetcher.FILE_NAME == null)
+            if (TextFileFetcher.CheckIfFileExists())
+            {
+                writeMessege("Opened File:" + TextFileFetcher.FileName);
+                WriteOptionsAndTakeChoice(optionsList);
+            }
+            else
             {
                 writeMessege("No File Loaded");
                 WriteOptionsAndTakeChoice(GetOnFileNotDownloadedOptions());
             }
-            else
-            {
-                writeMessege("Opened File:" + TextFileFetcher.FILE_NAME);
-                WriteOptionsAndTakeChoice(optionsList);
-            }
+            
 
         }
 
