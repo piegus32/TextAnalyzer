@@ -10,11 +10,9 @@ namespace TextAnalyzer.Commands
     {
 		public bool Reportable => true;
 
-		List<char> endCharacters = new List<char>(){'?','!','.'};
+		List<char> endCharacters = new List<char>(){'?','.'};
 
         public string Description => "Count all sentences in file.";
-
-        string text = TextFileFetcher.GetTextFileString();
 
         public void Activate()
         {
@@ -23,6 +21,7 @@ namespace TextAnalyzer.Commands
 
         protected void CountSentences()
         {
+            var text = TextFileFetcher.GetTextFileString();
             var sentences = text.Where((t, i) => endCharacters.Contains(t) && text[i + 1] == ' ' ||
                                                  endCharacters.Contains(t) && text[i + 1] == '\n'
             ).Count();
