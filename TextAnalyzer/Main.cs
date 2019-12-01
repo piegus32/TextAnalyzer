@@ -56,7 +56,10 @@ namespace TextAnalyzer
         private void WriteOptionsAndTakeChoice(List<ICommand> viableOptions)
         {
             int i = 1;
-            foreach (var command in viableOptions) writeMessege($"{i++}. {command.Description}");
+            foreach (ICommand command in viableOptions)
+            {
+                    writeMessege($"{i++}. {command.Description}"
+            );
             writeMessege("Took: ");
 
             //Try-catch exception before choosing option.
