@@ -58,8 +58,8 @@ namespace TextAnalyzer
             int i = 1;
             foreach (ICommand command in viableOptions)
             {
-                    writeMessege($"{i++}. {command.Description}"
-            );
+                writeMessege($"{i++}. {command.Description}");
+            }
             writeMessege("Took: ");
 
             //Try-catch exception before choosing option.
